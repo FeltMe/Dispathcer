@@ -1,0 +1,82 @@
+﻿<Window x:Class="Dispetcher.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Dispetcher"
+        xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
+        mc:Ignorable="d"
+        Title="TaskManager" Height="450" Width="400" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" MinHeight="350" MinWidth="350">
+
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="FontStyle" Value="Oblique"/>
+            <Setter Property="Background" Value="Black" />
+            <Setter Property="Opacity" Value="0.7" />
+            <Setter Property="Foreground" Value="White" />
+        </Style>
+    </Window.Resources>
+
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="1.5*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0">
+            <MenuItem Header="File">
+                <MenuItem Header="Add plugin" Click="AddPlugin"/>
+                <MenuItem Header="Start new Program" Click="MenuItem_StartNewProgram"/>
+                <MenuItem Header="Exit" Click="ExitClick"/>
+            </MenuItem>
+            <MenuItem Header="Parametrs">
+                <MenuItem Header="Up for all windows" Click="UpOfAll"/>
+                <MenuItem Header="Down of all windows" Click="DownOfAll"/>
+            </MenuItem>
+            <MenuItem Header="View">
+                <MenuItem Header="simple menu item" Click="IdkWhatToDohear"/>
+            </MenuItem>
+        </Menu>
+
+        
+        
+        <TabControl Grid.Row="1">
+            <TabItem Header="Application">
+                <ListView Name="AppList" Background="White">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=AppNamee}" Width="100">AppNamee</GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </TabItem>
+            <TabItem Header="Procesess">
+				<ListView Name="ProcList" Background="White">
+                    <ListView.View>
+						<GridView>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="60">Id</GridViewColumn>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=Name}" Width="100">Name</GridViewColumn>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=Priority}" Width="100">Priority</GridViewColumn>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=Descripts}" Width="100">Descripts</GridViewColumn>
+                        </GridView>
+					</ListView.View>
+                </ListView>
+            </TabItem>
+        </TabControl>
+        
+        
+        
+        <StackPanel Grid.Row="2" Margin="8" HorizontalAlignment="Right" Orientation="Horizontal" >
+            <Button Content="New Task" Click="NewTaskClick"/>
+            <Button Content="End Task" Click="EndTaskClick"/>
+        </StackPanel>
+        <StackPanel Grid.Row="3" HorizontalAlignment="Right" Orientation="Horizontal"></StackPanel>
+
+        <StackPanel Grid.Row="3" Margin="4" HorizontalAlignment="Right" Orientation="Horizontal">
+            <Label x:Name="CpuLabel"/>
+            <Label x:Name="MemLabel"/>
+        </StackPanel>
+    </Grid>
+</Window>
