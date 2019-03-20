@@ -8,28 +8,25 @@ namespace Dispetcher
     {
         private List<MyAppHeader> AppsList = new List<MyAppHeader>();
         private List<MyProcesessHeader> ProcesList = new List<MyProcesessHeader>();
-       
+
 
         public List<MyAppHeader> AddApplication()
         {
             AppsList.Clear();
             foreach (var item in Process.GetProcesses())
             {
-                MyAppHeader temp = new MyAppHeader
+                if(string.IsNullOrEmpty(item.MainWindowTitle) == false)
                 {
-                    AppNamee = item.ProcessName
-                };
-                AppsList.Add(temp);
+                    MyAppHeader temp = new MyAppHeader
+                    {
+                        AppNamee = item.ProcessName
+                    };
+
+                    AppsList.Add(temp);
+                }
+                
             }
             return AppsList;
-        }
-
-        private void MakeFinishAppList(ref List<MyAppHeader> mies)
-        {
-            foreach (var item in AppsList)
-            {
-
-            }
         }
 
         public List<MyProcesessHeader> AddProcesess()
@@ -44,7 +41,7 @@ namespace Dispetcher
                     Priority = item.BasePriority,
                     Descripts = item.HandleCount
                 };
-                
+
                 ProcesList.Add(TempMyProceses);
             }
             return ProcesList;

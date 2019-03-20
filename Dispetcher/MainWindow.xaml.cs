@@ -82,16 +82,35 @@ namespace Dispetcher
 
         private void KillProc()
         {
-            try
+            string AppName = null;
+            string ProcName = null;
+            if (AppList.SelectedItem != null)
+            {
+                AppName = (AppList.SelectedItem as MyAppHeader).AppNamee;
+            }
+            if (ProcList.SelectedItem != null)
+            {
+                ProcName = (ProcList.SelectedItem as MyProcesessHeader).Name;
+            }
+
+            if (string.IsNullOrEmpty(AppName) == false)
+            {
+                Process[] processes = Process.GetProcessesByName(AppName);
+                foreach (var item in processes)
+                {
+                    item.Kill();
+                }
+            }
+            else if (string.IsNullOrEmpty(ProcName) == false)
             {
                 int id = ProcList.SelectedIndex;
                 MyProcesessHeader my = (MyProcesessHeader)ProcList.Items[id];
                 Process process = Process.GetProcessesByName(my.Name)[0];
                 process.Kill();
             }
-            catch
+            else
             {
-                Console.WriteLine("Acess is denied");
+                MessageBox.Show("No item selected");
             }
         }
 
