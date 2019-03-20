@@ -34,6 +34,7 @@ namespace Dispetcher
             InitializeComponent();
             AppList.ItemsSource = app;
             ProcList.ItemsSource = processes;
+            WhiteModee.IsChecked = true;
         }
 
         private void NewTaskClick(object sender, RoutedEventArgs e)
@@ -122,20 +123,43 @@ namespace Dispetcher
 
         private void AddPlugin(object sender, RoutedEventArgs e)
         {
-            
-                OpenFileDialog opf = new OpenFileDialog
-                {
-                    Filter = "Dll Files | *.dll"
-                };
-                opf.ShowDialog();
 
-                var asm = Assembly.Load(opf.FileName);
-                dynamic  inf = asm.CreateInstance("MyPlugin.Plugin");
-                inf.Do();
-                var cpu = inf.CPUUsage();
-                var mem = inf.MemUsage();
-                CpuLabel.Content = cpu;
-                MemLabel.Content = mem;
+            OpenFileDialog opf = new OpenFileDialog
+            {
+                Filter = "Dll Files | *.dll"
+            };
+            opf.ShowDialog();
+
+            //string[] dllFileNames = null;
+            //ICollection<Assembly> assemblies = new List<Assembly>(dllFileNames.Length);
+            //foreach (string dllFile in dllFileNames)
+            //{
+            //    AssemblyName an = GetAssemblyName(dllFile);
+            //    Assembly assembly = Assembly.Load(an);
+            //    assemblies.Add(assembly);
+            //}
+            //AssemblyName name = new AssemblyName(opf.FileName);
+            //Assembly assembly = Assembly.Load(name);
+            //assemblies.Add(assembly);
+            //Type pluginType = typeof(IAddition);
+
+
+
+            //AppDomain Plagin = AppDomain.CreateDomain("Plugin");
+            //Assembly asm = Plagin.Load(opf.FileName);
+            //var inf = asm.CreateInstance("myLibrary.Info");
+            //var method = inf.GetType().GetMethod("Do");
+            //method.Invoke(inf, new object[] {});
+
+
+
+            // Assembly asm = typeof(IAddition).Assembly;
+            // dynamic inf = asm.CreateInstance("MyPlugin.Plugin");
+            // inf.Do();
+            // var cpu = inf.CPUUsage();
+            // var mem = inf.MemUsage();
+            // CpuLabel.Content = cpu;
+            // MemLabel.Content = mem;
         }
 
         public void RefreshTabs()
@@ -159,6 +183,69 @@ namespace Dispetcher
                 RefreshTabs();
             };
             t.Start();
+        }
+
+        private void WhiteModeChange(object sender, RoutedEventArgs e)
+        {
+            int color = 0;
+            SwitchColorMyDispetcher(color);
+        }
+
+        private void DarkModeChange(object sender, RoutedEventArgs e)
+        {
+            int color = 1;
+            SwitchColorMyDispetcher(color);
+        }
+
+        private void SwitchColorMyDispetcher(int StyleColor)
+        {
+            var BackBrush = new SolidColorBrush();
+            var ForegrnBrush = new SolidColorBrush();
+            if (StyleColor == 0)
+            {
+                BackBrush = Brushes.White;
+                ForegrnBrush = Brushes.Blue;
+            }
+            else
+            {
+                BackBrush = Brushes.Black;
+                ForegrnBrush = Brushes.Blue;
+            }
+
+            MyMenu.Background = BackBrush;
+            MyMenu.Opacity = 0.9;
+            MyMenu.Foreground = ForegrnBrush;
+
+            MyTapControl.Background = BackBrush;
+            MyTapControl.Opacity = 0.9;
+            MyTapControl.Foreground = ForegrnBrush;
+
+            EndTaskBtn.Background = BackBrush;
+            EndTaskBtn.Opacity = 0.9;
+            EndTaskBtn.Foreground = ForegrnBrush;
+
+            NewTaskBtn.Background = BackBrush;
+            NewTaskBtn.Opacity = 0.9;
+            NewTaskBtn.Foreground = ForegrnBrush;
+
+            MyGrid.Background = BackBrush;
+            MyGrid.Opacity = 0.9;
+
+            Tab1.Background = BackBrush;
+            Tab1.Opacity = 0.9;
+            Tab1.Foreground = ForegrnBrush;
+
+            Tab2.Background = BackBrush;
+            Tab2.Opacity = 0.9;
+            Tab2.Foreground = ForegrnBrush;
+
+            ProcList.Background = BackBrush;
+            ProcList.Opacity = 0.9;
+            ProcList.Foreground = ForegrnBrush;
+
+            AppList.Background = BackBrush;
+            AppList.Opacity = 0.9;
+            AppList.Foreground = ForegrnBrush;
         }
     }
 }

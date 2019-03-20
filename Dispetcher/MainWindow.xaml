@@ -8,24 +8,14 @@
         mc:Ignorable="d"
         Title="TaskManager" Height="450" Width="400" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" MinHeight="350" MinWidth="350">
 
-    <Window.Resources>
-        <Style TargetType="Button">
-            <Setter Property="FontStyle" Value="Oblique"/>
-            <Setter Property="Background" Value="Black" />
-            <Setter Property="Opacity" Value="0.7" />
-            <Setter Property="Foreground" Value="White" />
-        </Style>
-    </Window.Resources>
-
-
-    <Grid>
+    <Grid x:Name="MyGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="10*"/>
             <RowDefinition Height="1.5*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Menu Grid.Row="0">
+        <Menu Grid.Row="0" x:Name="MyMenu">
             <MenuItem Header="File">
                 <MenuItem Header="Add plugin" Click="AddPlugin"/>
                 <MenuItem Header="Start new Program" Click="MenuItem_StartNewProgram"/>
@@ -36,26 +26,27 @@
                 <MenuItem Header="Down of all windows" Click="DownOfAll"/>
             </MenuItem>
             <MenuItem Header="View">
-                <MenuItem Header="simple menu item" Click="IdkWhatToDohear"/>
+                <RadioButton Content="White mode" Checked="WhiteModeChange" x:Name="WhiteModee"/>
+                <RadioButton Content="Dark mide" Checked="DarkModeChange"/>
             </MenuItem>
         </Menu>
 
         
         
-        <TabControl Grid.Row="1">
-            <TabItem Header="Application">
+        <TabControl Grid.Row="1" x:Name="MyTapControl">
+            <TabItem Header="Application" x:Name="Tab1">
                 <ListView Name="AppList" Background="White">
                     <ListView.View>
-                        <GridView>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=AppNamee}" Width="100">AppNamee</GridViewColumn>
+                        <GridView x:Name="Grid1">
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=AppNamee}" Width="150">AppNamee</GridViewColumn>
                         </GridView>
                     </ListView.View>
                 </ListView>
             </TabItem>
-            <TabItem Header="Procesess">
+            <TabItem Header="Procesess" x:Name="Tab2">
 				<ListView Name="ProcList" Background="White">
                     <ListView.View>
-						<GridView>
+						<GridView x:Name="Grid2">
                             <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="60">Id</GridViewColumn>
                             <GridViewColumn DisplayMemberBinding="{Binding Path=Name}" Width="100">Name</GridViewColumn>
                             <GridViewColumn DisplayMemberBinding="{Binding Path=Priority}" Width="100">Priority</GridViewColumn>
@@ -65,18 +56,20 @@
                 </ListView>
             </TabItem>
         </TabControl>
-        
-        
-        
-        <StackPanel Grid.Row="2" Margin="8" HorizontalAlignment="Right" Orientation="Horizontal" >
-            <Button Content="New Task" Click="NewTaskClick"/>
-            <Button Content="End Task" Click="EndTaskClick"/>
+
+
+
+        <StackPanel Grid.Row="2" Margin="8" HorizontalAlignment="Right" Orientation="Horizontal" x:Name="MyStackPnl1">
+            <Button Content="New Task" Click="NewTaskClick" x:Name="NewTaskBtn"/>
+            <Button Content="End Task" Click="EndTaskClick" x:Name="EndTaskBtn"/>
         </StackPanel>
         <StackPanel Grid.Row="3" HorizontalAlignment="Right" Orientation="Horizontal"></StackPanel>
 
-        <StackPanel Grid.Row="3" Margin="4" HorizontalAlignment="Right" Orientation="Horizontal">
+        <StackPanel Grid.Row="3" Margin="4" HorizontalAlignment="Right" Orientation="Horizontal" x:Name="MyStackPnl2">
             <Label x:Name="CpuLabel"/>
             <Label x:Name="MemLabel"/>
         </StackPanel>
+        
     </Grid>
+    
 </Window>

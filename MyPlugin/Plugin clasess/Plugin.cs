@@ -14,8 +14,8 @@ namespace MyPlugin
         public string GeneralInfo { get; set; }
         public string AuthorInfo { get; set; }
         public int TimeToUpdateData { get; set; }
-        public PerformanceCounter Cpucounter { get; set; }
-        public PerformanceCounter Memcounter { get; set; }
+        public PerformanceCounter Cpucounter { get; set; } = new PerformanceCounter();
+        public PerformanceCounter Memcounter { get; set; } = new PerformanceCounter();
 
         public void Do()
         {
