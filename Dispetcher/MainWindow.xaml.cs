@@ -143,11 +143,31 @@ namespace Dispetcher
         private void AddPlugin(object sender, RoutedEventArgs e)
         {
 
-            OpenFileDialog opf = new OpenFileDialog
+            OpenFileDialog ofd = new OpenFileDialog
             {
                 Filter = "Dll Files | *.dll"
             };
-            opf.ShowDialog();
+
+            string nspace = "", mname = "";
+            if (ofd.ShowDialog() == true)
+            {
+                var path = ofd.FileName;
+                Assembly asm = Assembly.LoadFrom(path);
+                var md = asm.GetModules();
+                foreach (var item in md)
+                {
+                    var m = item.GetTypes();
+                    foreach (var item2 in m)
+                    {
+                        MessageBox.Show(item2.Name);
+                        nspace = item2.Namespace;
+                        mname = item2.Name;
+                    }
+                }
+                var inf = (asm.CreateInstance(nspace + "." + mname));
+                var method = inf.GetType().GetMethod("Do");
+                MessageBox.Show((string)method.Invoke(inf, null));
+            }
 
             //string[] dllFileNames = null;
             //ICollection<Assembly> assemblies = new List<Assembly>(dllFileNames.Length);

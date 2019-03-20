@@ -11,15 +11,15 @@ namespace MyPlugin
     public class Plugin : IAddition
     {
         public List<string> OutputParams { get; set; }
-        public string GeneralInfo { get; set; }
-        public string AuthorInfo { get; set; }
-        public int TimeToUpdateData { get; set; }
+        public string GeneralInfo { get; set; } = "My try to make some plugin";
+        public string AuthorInfo { get; set; } = "Sashkoo";
+        public int TimeToUpdateData { get; set; } = 0;
         public PerformanceCounter Cpucounter { get; set; } = new PerformanceCounter();
         public PerformanceCounter Memcounter { get; set; } = new PerformanceCounter();
 
-        public void Do()
+        public string Do()
         {
-            MainCode();
+            return MemUsage() + " " + CPUUsage(); 
         }
 
         private void MainCode()
@@ -27,6 +27,7 @@ namespace MyPlugin
             Cpucounter = new PerformanceCounter("Processor", "% Processor Time", "_Total");
             Memcounter = new PerformanceCounter("Memory", "% Committed Bytes In Use");
         }
+
         public string CPUUsage()
         {
             return Cpucounter.NextValue().ToString() + " %";
