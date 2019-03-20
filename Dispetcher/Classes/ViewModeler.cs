@@ -24,6 +24,14 @@ namespace Dispetcher
             return AppsList;
         }
 
+        private void MakeFinishAppList(ref List<MyAppHeader> mies)
+        {
+            foreach (var item in AppsList)
+            {
+
+            }
+        }
+
         public List<MyProcesessHeader> AddProcesess()
         {
             ProcesList.Clear();
