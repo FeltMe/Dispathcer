@@ -13,13 +13,14 @@ namespace MyPlugin
         public List<string> OutputParams { get; set; }
         public string GeneralInfo { get; set; } = "My try to make some plugin";
         public string AuthorInfo { get; set; } = "Sashkoo";
-        public int TimeToUpdateData { get; set; } = 0;
+        public int TimeToUpdateData { get; set; } = 5;
         public PerformanceCounter Cpucounter { get; set; } = new PerformanceCounter();
         public PerformanceCounter Memcounter { get; set; } = new PerformanceCounter();
 
-        public string Do()
+        public void Do()
         {
-            return MemUsage() + " " + CPUUsage(); 
+            OutputParams.Clear();
+            OutputParams.Add()
         }
 
         private void MainCode()
@@ -36,6 +37,20 @@ namespace MyPlugin
         public string MemUsage()
         {
             return Memcounter.NextValue().ToString() + " %";
+        }
+
+        private void Refresh()
+        {
+            System.Timers.Timer t = new System.Timers.Timer()
+            {
+                AutoReset = true,
+                Interval = TimeToUpdateData,
+            };
+            t.Elapsed += (a, b) =>
+            {
+                MainCode();
+            };
+            t.Start();
         }
     }
 }
