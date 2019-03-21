@@ -1,5 +1,4 @@
-﻿using Dispetcher;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,9 +7,9 @@ using System.Diagnostics;
 
 namespace MyPlugin
 {
-    public class Plugin : IAddition
+    public class Plugin
     {
-        public List<string> OutputParams { get; set; }
+        public List<string> OutputParams { get; set; } = new List<string>();
         public string GeneralInfo { get; set; } = "My try to make some plugin";
         public string AuthorInfo { get; set; } = "Sashkoo";
         public int TimeToUpdateData { get; set; } = 5;
@@ -19,9 +18,11 @@ namespace MyPlugin
 
         public void Do()
         {
-            OutputParams.Clear();
-            OutputParams.Add()
+            OutputParams.Add("smth");
+            OutputParams.Add("smth2");
         }
+
+
 
         private void MainCode()
         {
@@ -29,12 +30,12 @@ namespace MyPlugin
             Memcounter = new PerformanceCounter("Memory", "% Committed Bytes In Use");
         }
 
-        public string CPUUsage()
+        private string CPUUsage()
         {
             return Cpucounter.NextValue().ToString() + " %";
         }
 
-        public string MemUsage()
+        private string MemUsage()
         {
             return Memcounter.NextValue().ToString() + " %";
         }

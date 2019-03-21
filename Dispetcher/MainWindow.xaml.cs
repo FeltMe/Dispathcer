@@ -164,10 +164,23 @@ namespace Dispetcher
                         mname = item2.Name;
                     }
                 }
-                var inf = (asm.CreateInstance(nspace + "." + mname));
-                var method = inf.GetType().GetMethod("Do");
-                MessageBox.Show((string)method.Invoke(inf, null));
+                IAddition inf = (IAddition)(asm.CreateInstance(nspace + "." + mname));
+                //var method = inf.GetType().GetMethod("Do");
+                //method.Invoke(inf, new object[] {});
+                
+                var MyParList = inf.GetType().GetProperty("GeneralInfo");
+              var k=  MyParList.GetValue(inf);
+                MessageBox.Show(k.ToString());
+                // inf.GetType().GetProperty("GeneralInfo");
+                //dynamic p = MyParList.value;
+                //foreach (var item in MyParList)
+                //{
+                //    MessageBox.Show(item);
+                //}
+                //var mynewlist = MessageBox.Show((string)method.Invoke(inf, null));
             }
+
+
 
             //string[] dllFileNames = null;
             //ICollection<Assembly> assemblies = new List<Assembly>(dllFileNames.Length);
@@ -183,6 +196,8 @@ namespace Dispetcher
             //Type pluginType = typeof(IAddition);
 
 
+            //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
             //AppDomain Plagin = AppDomain.CreateDomain("Plugin");
             //Assembly asm = Plagin.Load(opf.FileName);
@@ -190,6 +205,8 @@ namespace Dispetcher
             //var method = inf.GetType().GetMethod("Do");
             //method.Invoke(inf, new object[] {});
 
+
+            //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
             // Assembly asm = typeof(IAddition).Assembly;
@@ -199,6 +216,8 @@ namespace Dispetcher
             // var mem = inf.MemUsage();
             // CpuLabel.Content = cpu;
             // MemLabel.Content = mem;
+
+
         }
 
         public void RefreshTabs()
