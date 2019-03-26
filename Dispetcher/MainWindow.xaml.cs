@@ -164,13 +164,18 @@ namespace Dispetcher
                         mname = item2.Name;
                     }
                 }
-                IAddition inf = (IAddition)(asm.CreateInstance(nspace + "." + mname));
+                dynamic inf = (asm.CreateInstance(nspace + "." + mname));
+                inf.Do();
+                foreach (var item in inf.OutputParams)
+                {
+                    CpuLabel.Content = item;
+                }
                 //var method = inf.GetType().GetMethod("Do");
                 //method.Invoke(inf, new object[] {});
-                
-                var MyParList = inf.GetType().GetProperty("GeneralInfo");
-              var k=  MyParList.GetValue(inf);
-                MessageBox.Show(k.ToString());
+
+                //  var MyParList = inf.GetType().GetProperty("GeneralInfo");
+                //var k=  MyParList.GetValue(inf);
+                //  MessageBox.Show(k.ToString());
                 // inf.GetType().GetProperty("GeneralInfo");
                 //dynamic p = MyParList.value;
                 //foreach (var item in MyParList)

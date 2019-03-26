@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using Dispetcher;
 
 namespace MyPlugin
 {
-    public class Plugin
+    public class Plugin : IAddition
     {
         public List<string> OutputParams { get; set; } = new List<string>();
         public string GeneralInfo { get; set; } = "My try to make some plugin";
@@ -18,11 +19,8 @@ namespace MyPlugin
 
         public void Do()
         {
-            OutputParams.Add("smth");
-            OutputParams.Add("smth2");
+            OutputParams.Add("Roma lox vse ykral, vorishka ne voryi!");
         }
-
-
 
         private void MainCode()
         {
