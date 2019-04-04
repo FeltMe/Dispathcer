@@ -1,16 +1,16 @@
-﻿using Dispetcher;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using Dispetcher;
 
 namespace MyPlugin
 {
     public class Plugin : IAddition
     {
-        public List<string> OutputParams { get; set; }
+        public List<string> OutputParams { get; set; } = new List<string>();
         public string GeneralInfo { get; set; } = "My try to make some plugin";
         public string AuthorInfo { get; set; } = "Sashkoo";
         public int TimeToUpdateData { get; set; } = 5;
@@ -19,8 +19,7 @@ namespace MyPlugin
 
         public void Do()
         {
-            OutputParams.Clear();
-            OutputParams.Add()
+            OutputParams.Add("Roma lox vse ykral, vorishka ne voryi!");
         }
 
         private void MainCode()

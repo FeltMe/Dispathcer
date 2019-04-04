@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿                using System.Collections.Generic;
 using System.Diagnostics;
 using Dispetcher.Classes;
 
@@ -8,7 +8,6 @@ namespace Dispetcher
     {
         private List<MyAppHeader> AppsList = new List<MyAppHeader>();
         private List<MyProcesessHeader> ProcesList = new List<MyProcesessHeader>();
-
 
         public List<MyAppHeader> AddApplication()
         {
@@ -24,7 +23,6 @@ namespace Dispetcher
 
                     AppsList.Add(temp);
                 }
-                
             }
             return AppsList;
         }

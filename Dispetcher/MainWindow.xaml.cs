@@ -152,10 +152,57 @@ namespace Dispetcher
                         mname = item2.Name;
                     }
                 }
-                var inf = (asm.CreateInstance(nspace + "." + mname));
-                var method = inf.GetType().GetMethod("Do");
-                MessageBox.Show((string)method.Invoke(inf, null));
+                dynamic inf = (asm.CreateInstance(nspace + "." + mname));
+                inf.Do();
+                foreach (var item in inf.OutputParams)
+                {
+                    CpuLabel.Content = item;
+                }
+                //var method = inf.GetType().GetMethod("Do");
+                //method.Invoke(inf, new object[] {});
+
+                //  var MyParList = inf.GetType().GetProperty("GeneralInfo");
+                //var k=  MyParList.GetValue(inf);
+                //  MessageBox.Show(k.ToString());
+                // inf.GetType().GetProperty("GeneralInfo");
+                //dynamic p = MyParList.value;
+                //foreach (var item in MyParList)
+                //{
+                //    MessageBox.Show(item);
+                //}
+                //var mynewlist = MessageBox.Show((string)method.Invoke(inf, null));
             }
+
+            //string[] dllFileNames = null;
+            //ICollection<Assembly> assemblies = new List<Assembly>(dllFileNames.Length);
+            //foreach (string dllFile in dllFileNames)
+            //{
+            //    AssemblyName an = GetAssemblyName(dllFile);
+            //    Assembly assembly = Assembly.Load(an);
+            //    assemblies.Add(assembly);
+            //}
+            //AssemblyName name = new AssemblyName(opf.FileName);
+            //Assembly assembly = Assembly.Load(name);
+            //assemblies.Add(assembly);
+            //Type pluginType = typeof(IAddition);
+
+
+
+            //AppDomain Plagin = AppDomain.CreateDomain("Plugin");
+            //Assembly asm = Plagin.Load(opf.FileName);
+            //var inf = asm.CreateInstance("myLibrary.Info");
+            //var method = inf.GetType().GetMethod("Do");
+            //method.Invoke(inf, new object[] {});
+
+
+
+            // Assembly asm = typeof(IAddition).Assembly;
+            // dynamic inf = asm.CreateInstance("MyPlugin.Plugin");
+            // inf.Do();
+            // var cpu = inf.CPUUsage();
+            // var mem = inf.MemUsage();
+            // CpuLabel.Content = cpu;
+            // MemLabel.Content = mem;
         }
 
         public void RefreshTabs()
