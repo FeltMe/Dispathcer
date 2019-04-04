@@ -1,22 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Diagnostics;
 using Dispetcher.Classes;
 using Microsoft.Win32;
 using System.Reflection;
-using System.Threading;
 using System.Collections.ObjectModel;
 
 namespace Dispetcher
@@ -168,37 +156,6 @@ namespace Dispetcher
                 var method = inf.GetType().GetMethod("Do");
                 MessageBox.Show((string)method.Invoke(inf, null));
             }
-
-            //string[] dllFileNames = null;
-            //ICollection<Assembly> assemblies = new List<Assembly>(dllFileNames.Length);
-            //foreach (string dllFile in dllFileNames)
-            //{
-            //    AssemblyName an = GetAssemblyName(dllFile);
-            //    Assembly assembly = Assembly.Load(an);
-            //    assemblies.Add(assembly);
-            //}
-            //AssemblyName name = new AssemblyName(opf.FileName);
-            //Assembly assembly = Assembly.Load(name);
-            //assemblies.Add(assembly);
-            //Type pluginType = typeof(IAddition);
-
-
-
-            //AppDomain Plagin = AppDomain.CreateDomain("Plugin");
-            //Assembly asm = Plagin.Load(opf.FileName);
-            //var inf = asm.CreateInstance("myLibrary.Info");
-            //var method = inf.GetType().GetMethod("Do");
-            //method.Invoke(inf, new object[] {});
-
-
-
-            // Assembly asm = typeof(IAddition).Assembly;
-            // dynamic inf = asm.CreateInstance("MyPlugin.Plugin");
-            // inf.Do();
-            // var cpu = inf.CPUUsage();
-            // var mem = inf.MemUsage();
-            // CpuLabel.Content = cpu;
-            // MemLabel.Content = mem;
         }
 
         public void RefreshTabs()

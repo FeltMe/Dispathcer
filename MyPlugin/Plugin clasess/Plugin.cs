@@ -29,12 +29,12 @@ namespace MyPlugin
             Memcounter = new PerformanceCounter("Memory", "% Committed Bytes In Use");
         }
 
-        public string CPUUsage()
+        private string CPUUsage()
         {
             return Cpucounter.NextValue().ToString() + " %";
         }
 
-        public string MemUsage()
+        private string MemUsage()
         {
             return Memcounter.NextValue().ToString() + " %";
         }
