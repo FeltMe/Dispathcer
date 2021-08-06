@@ -1,25 +1,12 @@
 ﻿using Dispetcher.Classes;
 using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Dispetcher
 {
-
-    public partial class NewTask : Window
+	public partial class NewTask : Window
     {
-
         public NewTask()
         {
             InitializeComponent();
@@ -32,19 +19,19 @@ namespace Dispetcher
 
         private void CancelClick(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void TryToStart()
         {
-            var Name = MyTextBox.Text;
+            var name = MyTextBox.Text;
             try
             {
-                NewProces newProces = new NewProces(Name);
+                NewProces newProces = new(name);
             }
             catch (Exception)
             {
-                MessageBox.Show($"Not find '{Name}' in curent context");
+                MessageBox.Show($"Not find '{name}' in curent context");
             }
         }
 
@@ -53,7 +40,7 @@ namespace Dispetcher
             var Name = SerchExeFile();
             try
             {
-                NewProces newProces = new NewProces(Name);
+                NewProces newProces = new(Name);
             }
             catch (Exception)
             {
@@ -63,17 +50,15 @@ namespace Dispetcher
 
         string SerchExeFile()
         {
-            string FileName;
-
-            OpenFileDialog dialog = new OpenFileDialog
-            {
+            string fileName;
+            OpenFileDialog dialog = new()
+			{
                 Filter = "Programs |*.exe"
             };
             dialog.ShowDialog();
-            FileName = dialog.FileName;
-            return FileName;
+            fileName = dialog.FileName;
+            return fileName;
 
         }
     }
 }
-

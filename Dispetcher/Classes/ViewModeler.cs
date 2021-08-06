@@ -1,4 +1,4 @@
-﻿                using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 using Dispetcher.Classes;
 
@@ -6,43 +6,43 @@ namespace Dispetcher
 {
     public class ViewModeler : IViewModeler
     {
-        private List<MyAppHeader> AppsList = new List<MyAppHeader>();
-        private List<MyProcesessHeader> ProcesList = new List<MyProcesessHeader>();
+        private readonly List<MyAppHeader> appsList = new();
+        private readonly List<MyProcesessHeader> procesList = new();
 
         public List<MyAppHeader> AddApplication()
         {
-            AppsList.Clear();
+            appsList.Clear();
             foreach (var item in Process.GetProcesses())
             {
                 if(string.IsNullOrEmpty(item.MainWindowTitle) == false)
                 {
-                    MyAppHeader temp = new MyAppHeader
-                    {
+                    MyAppHeader temp = new()
+					{
                         AppNamee = item.ProcessName
                     };
 
-                    AppsList.Add(temp);
+                    appsList.Add(temp);
                 }
             }
-            return AppsList;
+            return appsList;
         }
 
         public List<MyProcesessHeader> AddProcesess()
         {
-            ProcesList.Clear();
+            procesList.Clear();
             foreach (var item in Process.GetProcesses())
             {
-                MyProcesessHeader TempMyProceses = new MyProcesessHeader
-                {
+                MyProcesessHeader TempMyProceses = new()
+				{
                     Id = item.Id,
                     Name = item.ProcessName,
                     Priority = item.BasePriority,
                     Descripts = item.HandleCount
                 };
 
-                ProcesList.Add(TempMyProceses);
+                procesList.Add(TempMyProceses);
             }
-            return ProcesList;
+            return procesList;
         }
     }
 }

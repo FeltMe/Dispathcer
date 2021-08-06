@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Dispetcher
 {
-    public interface IAddition
+	public interface IAddition
     {
-        void Do();
-        List<string> OutputParams { get; set; }
-        string GeneralInfo { get; set; }
-        string AuthorInfo { get; set; }
-        int TimeToUpdateData { get; set; }
+        public void Do();
+        public List<string> OutputParams { get; set; }
+        public string GeneralInfo { get; set; }
+        public string AuthorInfo { get; set; }
+        public int TimeToUpdateData { get; set; }
     }
 }

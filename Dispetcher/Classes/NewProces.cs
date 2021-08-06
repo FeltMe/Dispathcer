@@ -11,7 +11,7 @@ namespace Dispetcher.Classes
 
         public void StartNewProcess(string Name)
         {
-            var NewProces = Process.Start(Name);
-        }
+			Process.Start(Name);
+		}
     }
 }

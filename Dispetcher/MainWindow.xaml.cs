@@ -9,13 +9,12 @@ using System.Collections.ObjectModel;
 
 namespace Dispetcher
 {
-
     public partial class MainWindow : Window
     {
-        protected ViewModeler SetTabs = new ViewModeler();
-        protected ObservableCollection<MyProcesessHeader> processes = new ObservableCollection<MyProcesessHeader>();
-        protected ObservableCollection<MyAppHeader> app = new ObservableCollection<MyAppHeader>();
-        private List<IAddition> plugins = new List<IAddition>();
+        protected ViewModeler setTabs = new();
+        protected ObservableCollection<MyProcesessHeader> processes = new();
+        protected ObservableCollection<MyAppHeader> app = new();
+        private readonly List<IAddition> plugins = new();
 
         public MainWindow()
         {
@@ -27,7 +26,7 @@ namespace Dispetcher
 
         private void NewTaskClick(object sender, RoutedEventArgs e)
         {
-            NewTask newTask = new NewTask();
+            NewTask newTask = new();
             newTask.ShowDialog();
             RefreshTabs();
         }
@@ -48,7 +47,7 @@ namespace Dispetcher
         {
             AppList.ItemsSource = null;
             app.Clear();
-            foreach (var item in SetTabs.AddApplication())
+            foreach (var item in setTabs.AddApplication())
             {
                 app.Add(new MyAppHeader() { AppNamee = item.AppNamee });
             }
@@ -60,7 +59,7 @@ namespace Dispetcher
         {
             ProcList.ItemsSource = null;
             processes.Clear();
-            foreach (var item in SetTabs.AddProcesess())
+            foreach (var item in setTabs.AddProcesess())
             {
                 processes.Add(new MyProcesessHeader() { Id = item.Id, Name = item.Name, Priority = item.Priority, Descripts = item.Descripts });
             }
@@ -81,7 +80,7 @@ namespace Dispetcher
                 ProcName = (ProcList.SelectedItem as MyProcesessHeader).Name;
             }
 
-            if (string.IsNullOrEmpty(AppName) == false)
+            if (!string.IsNullOrEmpty(AppName))
             {
                 Process[] processes = Process.GetProcessesByName(AppName);
                 foreach (var item in processes)
@@ -89,7 +88,7 @@ namespace Dispetcher
                     item.Kill();
                 }
             }
-            else if (string.IsNullOrEmpty(ProcName) == false)
+            else if (!string.IsNullOrEmpty(ProcName))
             {
                 int id = ProcList.SelectedIndex;
                 MyProcesessHeader my = (MyProcesessHeader)ProcList.Items[id];
@@ -104,7 +103,7 @@ namespace Dispetcher
 
         private void MenuItem_StartNewProgram(object sender, RoutedEventArgs e)
         {
-            NewTask newTask = new NewTask();
+            NewTask newTask = new();
             newTask.ShowDialog();
         }
 
@@ -131,8 +130,8 @@ namespace Dispetcher
         private void AddPlugin(object sender, RoutedEventArgs e)
         {
 
-            OpenFileDialog ofd = new OpenFileDialog
-            {
+            OpenFileDialog ofd = new()
+			{
                 Filter = "Dll Files | *.dll"
             };
 
@@ -174,7 +173,7 @@ namespace Dispetcher
 
         private void SetRefreshTimer()
         {
-            System.Timers.Timer t = new System.Timers.Timer()
+            System.Timers.Timer t = new()
             {
                 AutoReset = true,
                 Interval = 5000,
@@ -200,53 +199,53 @@ namespace Dispetcher
 
         private void SwitchColorMyDispetcher(int StyleColor)
         {
-            var BackBrush = new SolidColorBrush();
-            var ForegrnBrush = new SolidColorBrush();
+            SolidColorBrush backBrush = new();
+            SolidColorBrush foregrnBrush = new();
             if (StyleColor == 0)
             {
-                BackBrush = Brushes.White;
-                ForegrnBrush = Brushes.Blue;
+                backBrush = Brushes.White;
+                foregrnBrush = Brushes.Blue;
             }
             else
             {
-                BackBrush = Brushes.Black;
-                ForegrnBrush = Brushes.Blue;
+                backBrush = Brushes.Black;
+                foregrnBrush = Brushes.Blue;
             }
 
-            MyMenu.Background = BackBrush;
+            MyMenu.Background = backBrush;
             MyMenu.Opacity = 0.9;
-            MyMenu.Foreground = ForegrnBrush;
+            MyMenu.Foreground = foregrnBrush;
 
-            MyTapControl.Background = BackBrush;
+            MyTapControl.Background = backBrush;
             MyTapControl.Opacity = 0.9;
-            MyTapControl.Foreground = ForegrnBrush;
+            MyTapControl.Foreground = foregrnBrush;
 
-            EndTaskBtn.Background = BackBrush;
+            EndTaskBtn.Background = backBrush;
             EndTaskBtn.Opacity = 0.9;
-            EndTaskBtn.Foreground = ForegrnBrush;
+            EndTaskBtn.Foreground = foregrnBrush;
 
-            NewTaskBtn.Background = BackBrush;
+            NewTaskBtn.Background = backBrush;
             NewTaskBtn.Opacity = 0.9;
-            NewTaskBtn.Foreground = ForegrnBrush;
+            NewTaskBtn.Foreground = foregrnBrush;
 
-            MyGrid.Background = BackBrush;
+            MyGrid.Background = backBrush;
             MyGrid.Opacity = 0.9;
 
-            Tab1.Background = BackBrush;
+            Tab1.Background = backBrush;
             Tab1.Opacity = 0.9;
-            Tab1.Foreground = ForegrnBrush;
+            Tab1.Foreground = foregrnBrush;
 
-            Tab2.Background = BackBrush;
+            Tab2.Background = backBrush;
             Tab2.Opacity = 0.9;
-            Tab2.Foreground = ForegrnBrush;
+            Tab2.Foreground = foregrnBrush;
 
-            ProcList.Background = BackBrush;
+            ProcList.Background = backBrush;
             ProcList.Opacity = 0.9;
-            ProcList.Foreground = ForegrnBrush;
+            ProcList.Foreground = foregrnBrush;
 
-            AppList.Background = BackBrush;
+            AppList.Background = backBrush;
             AppList.Opacity = 0.9;
-            AppList.Foreground = ForegrnBrush;
+            AppList.Foreground = foregrnBrush;
         }
     }
 }
